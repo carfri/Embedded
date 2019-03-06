@@ -26,8 +26,8 @@ fn main() -> ! {
     let mut _x = 0;
     loop {
         _x += 1;
-        //cortex_m::asm::nop();
-        //cortex_m::asm::bkpt();
+        cortex_m::asm::nop();
+        cortex_m::asm::bkpt();
         _x -= 1;
     }
 }
@@ -110,7 +110,42 @@ fn main() -> ! {
 //    What is the output of:
 //    (gdb) disassemble
 //
-//    ** your answer here **
+//    Dump of assembler code for function main:
+//    0x0800040a <+0>:	sub	sp, #16
+//    0x0800040c <+2>:	movs	r0, #0
+//    0x0800040e <+4>:	str	r0, [sp, #12]
+//    0x08000410 <+6>:	b.n	0x8000412 <main+8>
+//    0x08000412 <+8>:	ldr	r0, [sp, #12]
+//    0x08000414 <+10>:	adds	r1, r0, #1
+//    0x08000416 <+12>:	mov	r2, r1
+//    0x08000418 <+14>:	cmp	r1, r0
+//    0x0800041a <+16>:	str	r2, [sp, #8]
+//    0x0800041c <+18>:	bvs.n	0x8000442 <main+56>
+//    0x0800041e <+20>:	b.n	0x8000420 <main+22>
+//    0x08000420 <+22>:	ldr	r0, [sp, #8]
+//    0x08000422 <+24>:	str	r0, [sp, #12]
+//    0x08000424 <+26>:	bl	0x8000400 <cortex_m::asm::nop>
+//    0x08000428 <+30>:	b.n	0x800042a <main+32>
+//    0x0800042a <+32>:	bl	0x800045e <__bkpt>
+// => 0x0800042e <+36>:	b.n	0x8000430 <main+38>
+//    0x08000430 <+38>:	ldr	r0, [sp, #12]
+//    0x08000432 <+40>:	subs	r1, r0, #1
+//    0x08000434 <+42>:	cmp	r0, #1
+//    0x08000436 <+44>:	str	r1, [sp, #4]
+//    0x08000438 <+46>:	bvs.n	0x8000450 <main+70>
+//    0x0800043a <+48>:	b.n	0x800043c <main+50>
+//    0x0800043c <+50>:	ldr	r0, [sp, #4]
+//    0x0800043e <+52>:	str	r0, [sp, #12]
+//    0x08000440 <+54>:	b.n	0x8000412 <main+8>
+//    0x08000442 <+56>:	movw	r0, #2284	; 0x8ec
+//    0x08000446 <+60>:	movt	r0, #2048	; 0x800
+//    0x0800044a <+64>:	bl	0x8000478 <panic>
+//    0x0800044e <+68>:	udf	#254	; 0xfe
+//    0x08000450 <+70>:	movw	r0, #2356	; 0x934
+//    0x08000454 <+74>:	movt	r0, #2048	; 0x800
+//    0x08000458 <+78>:	bl	0x8000478 <panic>
+//    0x0800045c <+82>:	udf	#254	; 0xfe
+// End of assembler dump.
 //
 //    Commit your answers (bare1_3)
 //
