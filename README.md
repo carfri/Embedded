@@ -235,7 +235,7 @@ optional = true
 
 [dependencies.cortex-m]
 version = "0.5.8"
-# features = ["inline-asm"] # <- currently requires nightly compiler
+features = ["inline-asm"] # <- currently requires nightly compiler
 
 # Uncomment for the allocator example.
 # alloc-cortex-m = "0.3.5"

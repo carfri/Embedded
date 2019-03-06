@@ -12,7 +12,9 @@
 
 extern crate panic_halt;
 
+use cortex_m::{iprintln, Peripherals};
 use cortex_m_rt::entry;
+
 
 #[entry]
 #[inline(never)]
@@ -55,10 +57,12 @@ fn main() -> ! {
 //    loop, (press pause/suspend to verify this).
 //    what is the output in the ITM console
 //
-//    ** your answer here **
+//    no output in itm console
 //
 //    What is the output in the semihosting (openocd) console
-//    ** your answer here **
+//    Open On-Chip Debugger 0.10.0+dev-00700-g2c76f1ac0 (2019-02-26-09:35)
+//      
+//    
 //
 //    Commit your answers (bare1_1)
 //
