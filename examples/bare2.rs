@@ -71,18 +71,21 @@ fn main() -> ! {
 //
 //    What is the output in the ITM console?
 //
-//    ** your answer here **
-//
+//    [2019-03-06T14:17:21.647Z]   bare2
+//    [2019-03-06T14:18:01.625Z]   Start 2236912362
+//    [2019-03-06T14:18:01.627Z]   End 2872912572
 //    Rebuild and run in release mode
 //
 //    > cargo build --example bare2 --release
 //
-//    ** your answer here **
+//    [2019-03-06T14:15:05.846Z]   bare2
+//    [2019-03-06T14:15:06.349Z]   Start 2107671520
+//    [2019-03-06T14:15:06.351Z]   End 2115671535
 //
 //    Compute the ratio between debug/release optimized code
 //    (the speedup).
 //
-//    ** your answer here **
+//    79.5
 //
 // commit your answers (bare2_1)
 //
