@@ -52,27 +52,39 @@ fn main() -> ! {
 //
 // 1. What is the output in the `openocd` (Adapter Output) console?
 //
-//    ** your answer here **
+//    bare3
+// s = ABCD
+// bs = [65, 66, 67, 68]
+// iterate over slice
+// 65,66,67,68,iterate iterate using (raw) indexing
+// 65,
+// 66,
+// 67,
+// 68,
+
+
+// a = AAAA
+
 //
 //    What is the type of `s`?
 //
-//    ** your answer here **
+//    String
 //
 //    What is the type of `bs`?
 //
-//    ** your answer here **
+//    it is a reference to a u8 byte array
 //
 //    What is the type of `c`?
 //
-//    ** your answer here **
+//    i32
 //
 //    What is the type of `a`?
 //
-//    ** your answer here **
+//    it's and array with 4 elements of type u8
 //
 //    What is the type of `i`?
 //
-//    ** your answer here **
+//    i32
 //
 //    Commit your answers (bare3_1)
 //
