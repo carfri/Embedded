@@ -202,7 +202,11 @@ fn main() -> ! {
 //    Compare the generated assembly for the loop
 //    between the dev (unoptimized) and release (optimized) build.
 //
-//    ** your answer here **
+//    Dump of assembler code for function main:
+//    0x08000400 <+0>:	bl	0x800067a <__nop>
+//    0x08000404 <+4>:	bl	0x8000676 <__bkpt>
+// => 0x08000408 <+8>:	b.n	0x8000400 <main>
+// End of assembler dump.
 //
 //    commit your answers (bare1_5)
 //
