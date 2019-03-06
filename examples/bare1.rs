@@ -71,7 +71,32 @@ fn main() -> ! {
 //    What is the output of:
 //    (gdb) disassemble
 //
-//    ** your answer here **
+//    Dump of assembler code for function Reset:
+// => 0x08000632 <+0>:	bl	0x80006a2 <DefaultPreInit>
+//    0x08000636 <+4>:	b.n	0x8000638 <Reset+6>
+//    0x08000638 <+6>:	movw	r0, #0
+//    0x0800063c <+10>:	movt	r0, #8192	; 0x2000
+//    0x08000640 <+14>:	movw	r1, #0
+//    0x08000644 <+18>:	movt	r1, #8192	; 0x2000
+//    0x08000648 <+22>:	bl	0x80006a4 <r0::zero_bss>
+//    0x0800064c <+26>:	b.n	0x800064e <Reset+28>
+//    0x0800064e <+28>:	movw	r0, #0
+//    0x08000652 <+32>:	movt	r0, #8192	; 0x2000
+//    0x08000656 <+36>:	movw	r1, #0
+//    0x0800065a <+40>:	movt	r1, #8192	; 0x2000
+//    0x0800065e <+44>:	movw	r2, #2596	; 0xa24
+//    0x08000662 <+48>:	movt	r2, #2048	; 0x800
+//    0x08000666 <+52>:	bl	0x80006ec <r0::init_data>
+//    0x0800066a <+56>:	b.n	0x800066c <Reset+58>
+//    0x0800066c <+58>:	movw	r0, #60808	; 0xed88
+//    0x08000670 <+62>:	movt	r0, #57344	; 0xe000
+//    0x08000674 <+66>:	ldr	r1, [r0, #0]
+//    0x08000676 <+68>:	orr.w	r1, r1, #15728640	; 0xf00000
+//    0x0800067a <+72>:	bl	0x8000766 <core::ptr::write_volatile>
+//    0x0800067e <+76>:	b.n	0x8000680 <Reset+78>
+//    0x08000680 <+78>:	bl	0x8000686 <ResetTrampoline>
+//    0x08000684 <+82>:	udf	#254	; 0xfe
+// End of assembler dump.
 //
 //    Commit your answers (bare1_2)
 //
