@@ -1,0 +1,1 @@
+{"rustc":11779505878581416876,"features":"[]","target":1563931689661458923,"profile":11870183705523825133,"path":8884836534093548100,"deps":[["cortex-m v0.5.8","cortex_m",2934088796134242669]],"local":[{"Precalculated":"0.4.0"}],"rustflags":["-C","link-arg=-Tlink.x"],"edition":"Edition2015"}
