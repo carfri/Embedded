@@ -14,7 +14,6 @@ extern crate panic_halt;
 
 use cortex_m::{iprintln, Peripherals};
 use cortex_m_rt::entry;
-use cortex_m_semihosting::hprintln;
 
 
 #[entry]
@@ -27,8 +26,8 @@ fn main() -> ! {
     let mut _x = 0;
     loop {
         _x += 1;
-        cortex_m::asm::nop();
-        cortex_m::asm::bkpt();
+        //cortex_m::asm::nop();
+        //cortex_m::asm::bkpt();
         _x -= 1;
     }
 }
@@ -71,33 +70,38 @@ fn main() -> ! {
 //    What is the output of:
 //    (gdb) disassemble
 //
-//    Dump of assembler code for function Reset:
-// => 0x08000632 <+0>:	bl	0x80006a2 <DefaultPreInit>
-//    0x08000636 <+4>:	b.n	0x8000638 <Reset+6>
-//    0x08000638 <+6>:	movw	r0, #0
-//    0x0800063c <+10>:	movt	r0, #8192	; 0x2000
-//    0x08000640 <+14>:	movw	r1, #0
-//    0x08000644 <+18>:	movt	r1, #8192	; 0x2000
-//    0x08000648 <+22>:	bl	0x80006a4 <r0::zero_bss>
-//    0x0800064c <+26>:	b.n	0x800064e <Reset+28>
-//    0x0800064e <+28>:	movw	r0, #0
-//    0x08000652 <+32>:	movt	r0, #8192	; 0x2000
-//    0x08000656 <+36>:	movw	r1, #0
-//    0x0800065a <+40>:	movt	r1, #8192	; 0x2000
-//    0x0800065e <+44>:	movw	r2, #2596	; 0xa24
-//    0x08000662 <+48>:	movt	r2, #2048	; 0x800
-//    0x08000666 <+52>:	bl	0x80006ec <r0::init_data>
-//    0x0800066a <+56>:	b.n	0x800066c <Reset+58>
-//    0x0800066c <+58>:	movw	r0, #60808	; 0xed88
-//    0x08000670 <+62>:	movt	r0, #57344	; 0xe000
-//    0x08000674 <+66>:	ldr	r1, [r0, #0]
-//    0x08000676 <+68>:	orr.w	r1, r1, #15728640	; 0xf00000
-//    0x0800067a <+72>:	bl	0x8000766 <core::ptr::write_volatile>
-//    0x0800067e <+76>:	b.n	0x8000680 <Reset+78>
-//    0x08000680 <+78>:	bl	0x8000686 <ResetTrampoline>
-//    0x08000684 <+82>:	udf	#254	; 0xfe
+// Dump of assembler code for function main:
+//    0x08000400 <+0>:	sub	sp, #16
+//    0x08000402 <+2>:	movs	r0, #0
+//    0x08000404 <+4>:	str	r0, [sp, #12]
+//    0x08000406 <+6>:	b.n	0x8000408 <main+8>
+// => 0x08000408 <+8>:	ldr	r0, [sp, #12]
+//    0x0800040a <+10>:	adds	r1, r0, #1
+//    0x0800040c <+12>:	mov	r2, r1
+//    0x0800040e <+14>:	cmp	r1, r0
+//    0x08000410 <+16>:	str	r2, [sp, #8]
+//    0x08000412 <+18>:	bvs.n	0x800042c <main+44>
+//    0x08000414 <+20>:	b.n	0x8000416 <main+22>
+//    0x08000416 <+22>:	ldr	r0, [sp, #8]
+//    0x08000418 <+24>:	str	r0, [sp, #12]
+//    0x0800041a <+26>:	ldr	r1, [sp, #12]
+//    0x0800041c <+28>:	subs	r2, r1, #1
+//    0x0800041e <+30>:	cmp	r1, #1
+//    0x08000420 <+32>:	str	r2, [sp, #4]
+//    0x08000422 <+34>:	bvs.n	0x800043a <main+58>
+//    0x08000424 <+36>:	b.n	0x8000426 <main+38>
+//    0x08000426 <+38>:	ldr	r0, [sp, #4]
+//    0x08000428 <+40>:	str	r0, [sp, #12]
+//    0x0800042a <+42>:	b.n	0x8000408 <main+8>
+//    0x0800042c <+44>:	movw	r0, #2268	; 0x8dc
+//    0x08000430 <+48>:	movt	r0, #2048	; 0x800
+//    0x08000434 <+52>:	bl	0x800045c <panic>
+//    0x08000438 <+56>:	udf	#254	; 0xfe
+//    0x0800043a <+58>:	movw	r0, #2340	; 0x924
+//    0x0800043e <+62>:	movt	r0, #2048	; 0x800
+//    0x08000442 <+66>:	bl	0x800045c <panic>
+//    0x08000446 <+70>:	udf	#254	; 0xfe
 // End of assembler dump.
-//
 //    Commit your answers (bare1_2)
 //
 // 3. Now remove the comment for `cortex_m::asm::nop()`.
