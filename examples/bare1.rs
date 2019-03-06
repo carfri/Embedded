@@ -14,6 +14,7 @@ extern crate panic_halt;
 
 use cortex_m::{iprintln, Peripherals};
 use cortex_m_rt::entry;
+use cortex_m_semihosting::hprintln;
 
 
 #[entry]
@@ -60,9 +61,7 @@ fn main() -> ! {
 //    no output in itm console
 //
 //    What is the output in the semihosting (openocd) console
-//    Open On-Chip Debugger 0.10.0+dev-00700-g2c76f1ac0 (2019-02-26-09:35)
-//      
-//    
+//    it says semihosting is enabled but nothing out of the usual
 //
 //    Commit your answers (bare1_1)
 //
