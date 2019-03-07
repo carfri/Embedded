@@ -68,11 +68,11 @@ fn main() -> ! {
 //
 //    What is the type of `s`?
 //
-//    String
+//    &str
 //
 //    What is the type of `bs`?
 //
-//    it is a reference to a u8 byte array
+//    it is a reference to a u8 byte array &[bs]
 //
 //    What is the type of `c`?
 //
