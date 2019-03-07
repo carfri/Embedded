@@ -39,7 +39,7 @@ fn main() -> ! {
     hprintln!("").unwrap();
 
     let a: [u8; 4] = [65u8; 4];
-    //let mut a = [0u8; 4];
+    let mut a = [0u8; 4];
 
     hprintln!("").unwrap();
     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
@@ -98,7 +98,8 @@ fn main() -> ! {
 //`
 //    Run the program, what happens and why?
 //
-//    ** your answer here **
+//    the 65u8 part in the a decleration points to the letter A in the string. If you uncomment the new a decleration
+//    it will overwrite a with the value of the 0u8 pointer. Which in this case is null.
 //
 //    Commit your answers (bare3_3)
 //
