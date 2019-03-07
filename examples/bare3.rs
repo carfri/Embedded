@@ -38,14 +38,12 @@ fn main() -> ! {
     hprintln!("iterate iterate using (raw) indexing").unwrap();
     for _i in 0..s.len() {
         hprintln!("{},", bs[_i]).unwrap();
-        a[_i] = bs[_i];
+        //a[_i] = bs[_i];
     }
 
     hprintln!("").unwrap();
 
-    //let a: [u8; 4] = [65u8; 4];
-    //let mut a = [0u8; 4];
-    //a.clone_from_slice(&bs[..]);
+    a.clone_from_slice(&bs[..]);
 
     hprintln!("").unwrap();
     hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
