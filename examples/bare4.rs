@@ -22,7 +22,7 @@ mod address {
     pub const PERIPH_BASE: u32      = 0x40000000;
     pub const AHB1PERIPH_BASE: u32  = PERIPH_BASE + 0x00020000;
     pub const RCC_BASE: u32         = AHB1PERIPH_BASE + 0x3800;
-    pub const RCC_AHB1ENR: u32      = RCC_BASE + 0x30;
+    pub const RCC_AHB1ENR: u32      = RCC_BASE + 0x30;  //
     pub const GBPIA_BASE: u32       = AHB1PERIPH_BASE + 0x0000;
     pub const GPIOA_MODER: u32      = GBPIA_BASE + 0x00;
     pub const GPIOA_BSRR: u32       = GBPIA_BASE + 0x18;
@@ -84,7 +84,7 @@ fn main() -> ! {
 //
 // 1.  Did you enjoy the blinking?
 //
-//    ** your answer here **
+//    yes it was very nice
 //
 //    Now lookup the data-sheets, and read each section referred,
 //    6.3.11, 8.4.1, 8.4.7
