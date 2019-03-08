@@ -124,16 +124,17 @@ fn main() -> ! {
 //
 //    Why is it important that ordering of volatile operations are ensured by the compiler?
 //
-//    ** your answer here **
+//    It is important because it is vital that some operations are executed before others. 
+//    Writing/reading could end up in unexpected results.
 //
 //    Give an example in the above code, where reordering might make things go horribly wrong
 //    (hint, accessing a peripheral not being powered...)
 //
-//    ** your answer here **
+//    For example you can't configure pa5 without first powering up GPIOA.
 //
 //    Without the non-reording proprety of `write_volatile/read_volatile` could that happen in theory
 //    (argue from the point of data dependencies).
 //
-//    ** your answer here **
+//    Since some operations are dependant on other opererations being executed prior it shouldn't be happening with volatile operations.
 //
 //    Commit your answers (bare4_3)
