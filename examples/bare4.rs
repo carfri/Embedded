@@ -36,8 +36,8 @@ use address::*;
 
 #[inline(always)]
 fn read_u32(addr: u32) -> u32 {
-    unsafe { core::ptr::read_volatile(addr as *const _) }
-    //core::ptr::read_volatile(addr as *const _)
+    //unsafe { core::ptr::read_volatile(addr as *const _) }
+    core::ptr::read_volatile(addr as *const _)
 }
 
 #[inline(always)]
