@@ -101,12 +101,17 @@ fn main() -> ! {
 //
 //    What was the error message and explain why.
 //
-//    ** your answer here **
+//    error[E0133]: call to unsafe function is unsafe and requires unsafe function or block
+//    The function performs a volatile read of the value from the addr variable. This read cannot be done within a safe code block.
+//    When a value is volitile it means that it can not be guaranteed to be the same between different accesses.
+//    The optimizer compiler can therefor not optimize away subsequent reads and writes of th value.
+//    The Rust compiler will need the block to be declared unsafe in order to execute it.
 //
 //    Digging a bit deeper, why do you think `read_volatile` is declared `unsafe`.
 //    (https://doc.rust-lang.org/core/ptr/fn.read_volatile.html, for some food for thought )
 //
-//    ** your answer here **
+//    As mentioned earlier it is essentially because the value can not be guaranteed to be the same between different accesses.
+//    This in turn eans that Rust can't enforce memory saftey guarantees at compile time.
 //
 //    Commit your answers (bare4_2)
 //
