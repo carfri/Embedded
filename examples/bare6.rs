@@ -83,7 +83,7 @@ fn clock_out(rcc: &RCC, gpioc: &GPIOC) {
     // mco2 	: SYSCLK = 0b00
     // mcopre 	: divide by 4 = 0b110
     rcc.cfgr
-        .modify(|_, w| unsafe { w.mco2().bits(0b00).mco2pre().bits(0b110) });
+        .modify(|_, w| unsafe { w.mco2().sysclk().mco2pre().bits(0b110) });
    
     // power on GPIOC, RM0368 6.3.11
     rcc.ahb1enr.modify(|_, w| w.gpiocen().set_bit());
