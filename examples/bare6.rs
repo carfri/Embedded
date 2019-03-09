@@ -128,7 +128,7 @@ fn clock_out(rcc: &RCC, gpioc: &GPIOC) {
 //
 //    What is the frequency of blinking?
 //
-//    ** your answer here **
+//    about 2 seconds between toggles.
 //
 //    commit your answers (bare6_1)
 //
@@ -137,18 +137,18 @@ fn clock_out(rcc: &RCC, gpioc: &GPIOC) {
 //
 //    What is the frequency of MCO2 read by the oscilloscope?
 //
-//    ** your answer here **
+//    4MHz
 //
 //    Compute the value of SYSCLK based on the oscilloscope reading
 //
-//    ** your answer here **
+//    4 * 4 (divide by 4 so need to multiply now) = 16MHz
 //
 //    What is the peak to peak reading of the signal?
 //
-//    ** your answer here **
+//    5.8V
 //
 //    Make a folder called "pictures" in your git project.
-//    Make a screen dump or photo of the oscilloscope output.
+//    Make a screen dump of the oscilloscope output.
 //    Save the the picture as "bare_6_16mhz_high_speed".
 //
 //    Commit your answers (bare6_2)
