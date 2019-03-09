@@ -165,7 +165,7 @@ fn clock_out(rcc: &RCC, gpioc: &GPIOC) {
 //`
 //    What is the frequency of blinking?
 //
-//    ** your answer here **
+//    ~0.5 sec between each toggle
 //
 //    Commit your answers (bare6_3)
 //
