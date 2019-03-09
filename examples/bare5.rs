@@ -57,12 +57,19 @@ mod stm32f40x {
     // width  (field width)
     // value  (new value that the field should take)
     //
-    // impl VolatileCell<u32> {
-    //     #[inline(always)]
-    //     pub fn modify(&self, offset: u8, width: u8, value: u32) {
-    //         // your code here
-    //     }
-    // }
+    impl VolatileCell<u32> {
+        #[inline(always)]
+        pub fn modify(&self, offset: u8, width: u8, value: u32) {
+            let read_var = self.read();
+            let bin = 0b11111111;
+            let mask = !((bin << offset+width) | !(bin << offset));
+            let mask_v = mask & (value << offset);
+            let mod_val = (read_var & !mask) | mask_v;
+            self.write(mod_val);
+    
+            // your code here
+        }
+    }
 
     #[repr(C)]
     #[allow(non_snake_case)]
@@ -140,28 +147,29 @@ fn wait(i: u32) {
     }
 }
 
+
 // simple test of Your `modify`
-//fn test() {
-// let t:VolatileCell<u32> = unsafe {  core::mem::uninitialized() };
-// t.write(0);
-// assert!(t.read() == 0);
-// t.modify(3, 3, 0b10101);
-// //
-// //     10101
-// //    ..0111000
-// //    ---------
-// //    000101000
-// assert!(t.read() == 0b101 << 3);
-// t.modify(4, 3, 0b10001);
-// //    000101000
-// //      111
-// //      001
-// //    000011000
-// assert!(t.read() == 0b011 << 3);
+fn test() {
+    let t:VolatileCell<u32> = unsafe {  core::mem::uninitialized() };
+    t.write(0);
+    assert!(t.read() == 0);
+    t.modify(3, 3, 0b10101);
+//
+//     10101
+//    ..0111000
+//    ---------
+//    000101000
+    assert!(t.read() == 0b101 << 3);
+    t.modify(4, 3, 0b10001);
+//    000101000
+//      111
+//      001
+//    000011000
+    assert!(t.read() == 0b011 << 3);
 
 // if << is used, your code will panic in dev (debug), but not in release mode
-// t.modify(32, 3, 1);
-//}
+    t.modify(32, 3, 1);
+}
 
 // system startup, can be hidden from the user
 #[entry]
@@ -169,7 +177,7 @@ fn main() -> ! {
     let rcc = unsafe { &mut *RCC::get() }; // get the reference to RCC in memory
     let gpioa = unsafe { &mut *GPIOA::get() }; // get the reference to GPIOA in memory
 
-    // test(); // uncomment to run test
+    test(); // uncomment to run test
     idle(rcc, gpioa);
     loop {}
 }
@@ -177,24 +185,29 @@ fn main() -> ! {
 // user application
 fn idle(rcc: &mut RCC, gpioa: &mut GPIOA) {
     // power on GPIOA
-    let r = rcc.AHB1ENR.read(); // read
-    rcc.AHB1ENR.write(r | 1 << (0)); // set enable
+    //let r = rcc.AHB1ENR.read(); // read
+    //rcc.AHB1ENR.write(r | 1 << (0)); // set enable
+    rcc.AHB1ENR.modify(0, 1, 0b1);
 
     // configure PA5 as output
-    let r = gpioa.MODER.read() & !(0b11 << (5 * 2)); // read and mask
-    gpioa.MODER.write(r | 0b01 << (5 * 2)); // set output mode
+    gpioa.MODER.modify(5*2, 2, 0b01);
+    //let r = gpioa.MODER.read() & !(0b11 << (5 * 2)); // read and mask
+    //gpioa.MODER.write(r | 0b01 << (5 * 2)); // set output mode
 
     loop {
         // set PA5 high
         //gpioa.BSRRH.write(1 << 5); // set bit, output hight (turn on led)
-        gpioa.ODR.write(gpioa.ODR.read() | (1 << 5));
-
-        wait(10_000);
+        //gpioa.ODR.write(gpioa.ODR.read() | (1 << 5));
+        gpioa.ODR.modify(5, 1, 0b1);
+        wait(1_119_982);
+        //wait(10_000);
 
         // set PA5 low
         //gpioa.BSRRL.write(1 << 5); // clear bit, output low (turn off led)
-        gpioa.ODR.write(gpioa.ODR.read() & !(1 << 5));
-        wait(10_000);
+        //gpioa.ODR.write(gpioa.ODR.read() & !(1 << 5));
+        gpioa.ODR.modify(5, 1, 0b0);
+        wait(1_119_982);
+        //wait(10_000);
     }
 }
 
@@ -218,6 +231,7 @@ fn idle(rcc: &mut RCC, gpioa: &mut GPIOA) {
 //    (They should have the same behavior, but is a bit less efficient.)
 //
 //    Run and see that the program behaves the same.
+//    It behaves the same, lamp is flashing like before.
 //
 //    Commit your answers (bare5_1)
 //
@@ -232,7 +246,8 @@ fn idle(rcc: &mut RCC, gpioa: &mut GPIOA) {
 //    Change the code into using your new API.
 //
 //    Run and see that the program behaves the same.
-//
+//  
+//    
 //    Commit your answers (bare5_2)
 //
 //    Discussion:
