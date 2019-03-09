@@ -199,14 +199,14 @@ fn idle(rcc: &mut RCC, gpioa: &mut GPIOA) {
         //gpioa.BSRRH.write(1 << 5); // set bit, output hight (turn on led)
         //gpioa.ODR.write(gpioa.ODR.read() | (1 << 5));
         gpioa.ODR.modify(5, 1, 0b1);
-        wait(1_119_982);
+        wait(100_000);
         //wait(10_000);
 
         // set PA5 low
         //gpioa.BSRRL.write(1 << 5); // clear bit, output low (turn off led)
         //gpioa.ODR.write(gpioa.ODR.read() & !(1 << 5));
         gpioa.ODR.modify(5, 1, 0b0);
-        wait(1_119_982);
+        wait(100_000);
         //wait(10_000);
     }
 }
