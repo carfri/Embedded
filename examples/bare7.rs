@@ -21,6 +21,7 @@ use nb::block;
 extern crate stm32f4xx_hal as hal;
 use crate::hal::prelude::*;
 use crate::hal::serial::{config::Config, Serial};
+use stm32f4xx_hal::stm32::{self, DWT, GPIOA, GPIOC, RCC};
 
 #[entry]
 fn main() -> ! {
@@ -33,7 +34,7 @@ fn main() -> ! {
     let rcc = p.RCC.constrain();
 
     // 16 MHz (default, all clocks)
-    let clocks = rcc.cfgr.freeze();
+    let clocks = rcc.cfgr.sysclk(84.mhz()).hclk(84.mhz()).pclk1(42.mhz()).pclk2(64.mhz()).freeze();
 
     let gpioa = p.GPIOA.split();
 
@@ -51,6 +52,8 @@ fn main() -> ! {
 
     // Separate out the sender and receiver of the serial port
     let (mut tx, mut rx) = serial.split();
+    let gpioc = p.GPIOC.split();
+    gpioc.pc9.into_alternate_af0().set_speed(hal::gpio::Speed::VeryHigh);
 
     loop {
         match block!(rx.read()) {
@@ -63,6 +66,7 @@ fn main() -> ! {
             }
         }
     }
+
 }
 
 // 0. Background reading:
