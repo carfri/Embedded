@@ -202,11 +202,12 @@ fn main() -> ! {
 //
 //    What did you receive, and what was the output of the ITM trace.
 //
-//    ** your answer here **
+//    I recieve a neverending stream of abcdabcdabcdabcd etc..
+//    The ITM trace outputs ok 97, ok 98, ok 99, ok 100 in a loop as well.
 //
 //    Explain why the buffer overflows.
 //
-//    ** your answer here **
+//    It does not overflow, if it were to overflow it would be because it is trying to write bytes before the buffer could reset.
 //
 //    commit your answers (bare7_4)
 //
