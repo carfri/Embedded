@@ -53,7 +53,7 @@ fn main() -> ! {
     // Separate out the sender and receiver of the serial port
     let (mut tx, mut rx) = serial.split();
     let gpioc = p.GPIOC.split();
-    gpioc.pc9.into_alternate_af0().set_speed(hal::gpio::Speed::VeryHigh);
+    gpioc.pc9.into_alternate_af0().set_speed(hal::gpio::Speed::Low);
 
     loop {
         match block!(rx.read()) {
@@ -149,15 +149,15 @@ fn main() -> ! {
 //
 //    What is the frequency of MCO2 read by the oscilloscope.
 //
-//    ** your answer here **
+//    84MHz
 //
 //    Compute the value of SYSCLK based on the oscilloscope reading.
 //
-//    ** your answer here **
+//    84MHz as specified in the code
 //
 //    What is the peak to peak reading of the signal.
 //
-//    ** your answer here **
+//    10.1V
 //
 //    Make a screen dump or photo of the oscilloscope output.
 //    Save the the picture as "bare_6_84mhz_high_speed"
