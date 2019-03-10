@@ -168,11 +168,11 @@ fn main() -> ! {
 //
 //    Did the frequency change in comparison to assignment 5?
 //
-//    ** your answer here **
+//    Unreadable it changed a lot. Only says "no edges"
 //
 //    What is the peak to peak reading of the signal (and why did it change)?
 //
-//    ** your answer here **
+//    peak is 70mV since the signal is so low the peak to peak reading will be almost non-existant as well.
 //
 //    Make a screen dump or photo of the oscilloscope output.
 //    Save the the picture as "bare_6_84mhz_low_speed".
