@@ -125,11 +125,12 @@ fn main() -> ! {
 //
 //    rcc.cfgr.sysclk(64.mhz()).pclk1(64.mhz()).pclk2(64.mhz()).freeze();
 //
-//    ** your answer here **
+//    The max frequency for pclk1 is 42MHz so it won't work with specified 64.
+//    HCLK should be set to 64MHz alsongside the sysclk. Above config will set it to default 16MHz which is wrong.
 //
 //    rcc.cfgr.sysclk(84.mhz()).pclk1(42.mhz()).pclk2(64.mhz()).freeze();
 //
-//    ** your answer here **
+//    hclk needs to be set to 84MHz.
 //
 //    Commit your answers (bare7_1)
 //
