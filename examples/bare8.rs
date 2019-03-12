@@ -114,7 +114,7 @@ const APP: () = {
 //
 // 1. Our CPU now runs slower, did it effect the behavior?
 //
-//    ** your answer here **
+//    When sending the abcd string it sends ababababab then gets stuck just sending 'b'. ITM tracing prints out 'error overrun.
 //
 //    Commit your answer (bare8_1)
 //
