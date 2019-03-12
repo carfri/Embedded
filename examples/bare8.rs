@@ -135,7 +135,8 @@ const APP: () = {
 // 3. The added tracing, how did that effect the performance,
 //    (are you know loosing more data)?
 //
-//    ** your answer here **
+//    It seems as though when you have the textra ITM tracing it will display an overrun error 1 byte earlier.
+//    If I remove the tracing I can send though 2 bytes before error, when I put the tracing in I can only send thourgh 1 byte.
 // 
 //    Commit your answer (bare8_3)
 //
