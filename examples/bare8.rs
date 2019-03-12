@@ -72,15 +72,22 @@ const APP: () = {
         let rx = resources.RX;
         let tx = resources.TX;
         let stim = &mut resources.ITM.stim[0];
+        let mut errors = 0;
+        let mut received = 0;
+
 
         loop {
             match block!(rx.read()) {
                 Ok(byte) => {
+                    received += 1;
+                    iprintln!(stim, "bytes received {:?}", received);
                     iprintln!(stim, "Ok {:?}", byte);
                     tx.write(byte).unwrap(); 
                 }
                 Err(err) => {
                     iprintln!(stim, "Error {:?}", err);
+                    errors += 1;
+                    iprintln!(stim, "errors {:?}", errors);
                 }
             }
         }
